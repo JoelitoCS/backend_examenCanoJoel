@@ -1,0 +1,149 @@
+@baseUrl = http://localhost:3001/api/atunes
+@contentType = application/json
+
+### ============================================
+### PRUEBAS DE ENDPOINTS - API DE ATUNES
+### ============================================
+
+### 1. GET - Obtener todos los atunes
+GET {{baseUrl}}
+
+###
+
+### 2. POST - Crear un nuevo atún (Atún 1)
+POST {{baseUrl}}
+Content-Type: {{contentType}}
+
+{
+  "nombre": "Atún Rojo del Atlántico",
+  "peso": 250,
+  "origen": "Océano Atlántico"
+}
+
+###
+
+### 3. POST - Crear un segundo atún (Atún 2)
+POST {{baseUrl}}
+Content-Type: {{contentType}}
+
+{
+  "nombre": "Atún Azul del Pacífico",
+  "peso": 180,
+  "origen": "Océano Pacífico"
+}
+
+###
+
+### 4. POST - Crear un tercer atún (Atún 3)
+POST {{baseUrl}}
+Content-Type: {{contentType}}
+
+{
+  "nombre": "Atún Blanco de Almadraba",
+  "peso": 320,
+  "origen": "Mar Mediterráneo"
+}
+
+###
+
+### 5. GET - Obtener todos los atunes (después de crear)
+GET {{baseUrl}}
+
+###
+
+### 6. GET - Obtener atún por ID (reemplaza con ID real)
+GET {{baseUrl}}/1
+
+###
+
+### 7. GET - Obtener otro atún por ID (reemplaza con ID real)
+GET {{baseUrl}}/2
+
+###
+
+### 8. PUT - Actualizar atún por ID (reemplaza con ID real)
+PUT {{baseUrl}}/1
+Content-Type: {{contentType}}
+
+{
+  "nombre": "Atún Rojo del Atlántico - ACTUALIZADO",
+  "peso": 280,
+  "origen": "Océano Atlántico Norte"
+}
+
+###
+
+### 9. DELETE - Eliminar atún por ID (reemplaza con ID real)
+DELETE {{baseUrl}}/3
+
+###
+
+### 10. GET - Verificar eliminación (atún 3 ya no debe existir)
+GET {{baseUrl}}/3
+
+###
+
+### 11. GET - Obtener todos los atunes (estado final)
+GET {{baseUrl}}
+
+###
+
+### ============================================
+### PRUEBAS DE VALIDACIÓN Y ERRORES
+### ============================================
+
+### 12. POST - Error: Faltan campos requeridos
+POST {{baseUrl}}
+Content-Type: {{contentType}}
+
+{
+  "nombre": "Atún Sin Peso"
+}
+
+###
+
+### 13. POST - Error: Peso inválido (peso negativo)
+POST {{baseUrl}}
+Content-Type: {{contentType}}
+
+{
+  "nombre": "Atún con Peso Inválido",
+  "peso": -50,
+  "origen": "Mar Desconocido"
+}
+
+###
+
+### 14. POST - Error: Peso no es un número
+POST {{baseUrl}}
+Content-Type: {{contentType}}
+
+{
+  "nombre": "Atún con Peso No Numérico",
+  "peso": "mucho",
+  "origen": "Mar Desconocido"
+}
+
+###
+
+### 15. GET - Error: Atún no encontrado
+GET {{baseUrl}}/999
+
+###
+
+### 16. PUT - Error: Intentar actualizar atún que no existe
+PUT {{baseUrl}}/999
+Content-Type: {{contentType}}
+
+{
+  "nombre": "Atún Fantasma",
+  "peso": 100,
+  "origen": "Atlántico"
+}
+
+###
+
+### 17. DELETE - Error: Intentar eliminar atún que no existe
+DELETE {{baseUrl}}/999
+
+###
