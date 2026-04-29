@@ -1,4 +1,4 @@
-@baseUrl = http://localhost:3001/api/atunes
+@baseUrl = https://backend-examencanojoel.onrender.com/api/atunes
 @contentType = application/json
 
 ### ============================================
